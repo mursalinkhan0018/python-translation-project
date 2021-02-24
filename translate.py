@@ -2,109 +2,155 @@
 
 import sys
 
+#1 DONE!!! Passed 9/10
+
 def translate_sequence(rna_sequence, genetic_code):
-    """Translates a sequence of RNA into a sequence of amino acids.
-
-    Translates `rna_sequence` into string of amino acids, according to the
-    `genetic_code` given as a dict. Translation begins at the first position of
-    the `rna_sequence` and continues until the first stop codon is encountered
-    or the end of `rna_sequence` is reached.
-
-    If `rna_sequence` is less than 3 bases long, or starts with a stop codon,
-    an empty string is returned.
-
-    Parameters
-    ----------
-    rna_sequence : str
-        A string representing an RNA sequence (upper or lower-case).
-
-    genetic_code : dict
-        A dictionary mapping all 64 codons (strings of three RNA bases) to
-        amino acids (string of single-letter amino acid abbreviation). Stop
-        codons should be represented with asterisks ('*').
-
-    Returns
-    -------
-    str
-        A string of the translated amino acids.
-    """
     pass
+# Read and get the RNA string
+    rna = rna_sequence.upper()
+    print ("\n \n RNA String: ", rna)
+    x=len(rna)
+    if x < 3:
+        return ''
+# RNA codon table(make sure you have it)
+    protein_string = ""
+# Generate protein string
+    for i in range(0, len(rna),3):
+        if genetic_code[rna[i:i+3]] == "*" :
+            break
+        protein_string += genetic_code[rna[i:i+3]]
+    return protein_string
+#    return protein_string
+	# Print the protein string
+    print ("\n \n Protein String: ", protein_string)
+
+	# End
+
+#2 Working need to fix 
 
 def get_all_translations(rna_sequence, genetic_code):
-    """Get a list of all amino acid sequences encoded by an RNA sequence.
-
-    All three reading frames of `rna_sequence` are scanned from 'left' to
-    'right', and the generation of a sequence of amino acids is started
-    whenever the start codon 'AUG' is found. The `rna_sequence` is assumed to
-    be in the correct orientation (i.e., no reverse and/or complement of the
-    sequence is explored).
-
-    The function returns a list of all possible amino acid sequences that
-    are encoded by `rna_sequence`.
-
-    If no amino acids can be translated from `rna_sequence`, an empty list is
-    returned.
-
-    Parameters
-    ----------
-    rna_sequence : str
-        A string representing an RNA sequence (upper or lower-case).
-
-    genetic_code : dict
-        A dictionary mapping all 64 codons (strings of three RNA bases) to
-        amino acids (string of single-letter amino acid abbreviation). Stop
-        codons should be represented with asterisks ('*').
-
-    Returns
-    -------
-    list
-        A list of strings; each string is an sequence of amino acids encoded by
-        `rna_sequence`.
-    """
     pass
+
+# Read and get the RNA string
+    DNA = rna_sequence.upper()
+    print ("\n \n RNA String1: ", DNA)
+    x=len(DNA)
+    if x < 3:
+        return ''
+    start = DNA.find('AUG')
+    protein_string = ""
+
+    if start!= -1:
+        while start+2 < len(DNA):
+            codon = DNA[start:start+3]
+#            if codon == ["UAA", "UGA", "UAG"]: break
+            if genetic_code[codon] == "*":
+                break
+            protein_string += genetic_code[codon]
+#            return protein_string
+#            print ("\n \n Protein String: ", protein_string)
+            start+=3
+        print ("\n \n Protein String1: ", protein_string)
+
+    DNA2= DNA[1:]
+    print ("\n \n RNA2 String: ", DNA2)
+    x=len(DNA2)
+    if x < 3:
+        return ''
+    start = DNA2.find('AUG')
+    protein_string = ""
+
+    if start!= -1:
+        while start+2 < len(DNA2):
+            codon = DNA2[start:start+3]
+#            if codon == ["UAA", "UGA", "UAG"]: break
+            if genetic_code[codon] == "*":
+                break
+            protein_string += genetic_code[codon]
+#            return protein_string
+#            print ("\n \n Protein String: ", protein_string)
+            start+=3
+        print ("\n \n Protein String2: ", protein_string)
+
+
+    DNA3= DNA[2:]
+    print ("\n \n RNA3 String: ", DNA3)
+    x=len(DNA3)
+    if x < 3:
+        return ''
+    start = DNA3.find('AUG')
+    protein_string = ""
+
+    if start!= -1:
+        while start+2 < len(DNA3):
+            codon = DNA3[start:start+3]
+#            if codon == ["UAA", "UGA", "UAG"]: break
+            if genetic_code[codon] == "*":
+                break
+            protein_string += genetic_code[codon]
+#            return protein_string
+#            print ("\n \n Protein String: ", protein_string)
+            start+=3
+        print ("\n \n Protein String3: ", protein_string)
+
+
+#3 DONE Passed All
 
 def get_reverse(sequence):
-    """Reverse orientation of `sequence`.
-
-    Returns a string with `sequence` in the reverse order.
-
-    If `sequence` is empty, an empty string is returned.
-
-    Examples
-    --------
-    >>> get_reverse('AUGC')
-    'CGUA'
-    """
     pass
+    sequence = sequence.upper()
+    re = []
+    x = len(sequence)
+    for i in sequence:
+        x = x - 1
+        re.append(sequence[x])
+    return ''.join(re)
+
+#4 DONE Passed All
 
 def get_complement(sequence):
-    """Get the complement of a `sequence` of nucleotides.
-
-    Returns a string with the complementary sequence of `sequence`.
-
-    If `sequence` is empty, an empty string is returned.
-
-    Examples
-    --------
-    >>> get_complement('AUGC')
-    'UACG'
-    """
     pass
+
+    sequence = sequence.upper()
+    com = []
+    for i in sequence:
+        if i == "U":
+            com.append("A")
+        if i == "A":
+            com.append("U")
+        if i == "G":
+            com.append("C")
+        if i == "C":
+            com.append("G")
+
+    return ''.join(com)
+
+#5 DONE Passed All
 
 def reverse_and_complement(sequence):
-    """Get the reversed and complemented form of a `sequence` of nucleotides.
-
-    Returns a string that is the reversed and complemented sequence
-    of `sequence`.
-
-    If `sequence` is empty, an empty string is returned.
-
-    Examples
-    --------
-    >>> reverse_and_complement('AUGC')
-    'GCAU'
-    """
     pass
+
+    sequence = sequence.upper()
+    re = []
+    x = len(sequence)
+    for i in sequence:
+        x = x - 1
+        re.append(sequence[x])
+#    return ''.join(re)
+    com = []
+    for i in re:
+        if i == "U":
+            com.append("A")
+        if i == "A":
+            com.append("U")
+        if i == "G":
+            com.append("C")
+        if i == "C":
+            com.append("G")
+
+    return ''.join(com)
+
+#6
 
 def get_longest_peptide(rna_sequence, genetic_code):
     """Get the longest peptide encoded by an RNA sequence.
