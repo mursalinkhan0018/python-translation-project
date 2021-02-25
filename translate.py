@@ -26,73 +26,82 @@ def translate_sequence(rna_sequence, genetic_code):
 
 	# End
 
-#2 Working need to fix 
-
+#2 Passed 2/4 All giving protein but not passing 
 def get_all_translations(rna_sequence, genetic_code):
     pass
 
 # Read and get the RNA string
     DNA = rna_sequence.upper()
+
     print ("\n \n RNA String1: ", DNA)
-    x=len(DNA)
-    if x < 3:
-        return ''
+
+    if (DNA.find('AUG') != -1):
+        pass
+#        print ("Contains given substring ")
+    else:
+        return []
+#        print ("Doesn't contains given substring")
+
     start = DNA.find('AUG')
-    protein_string = ""
+
+    protein_string1 = ""
 
     if start!= -1:
         while start+2 < len(DNA):
             codon = DNA[start:start+3]
-#            if codon == ["UAA", "UGA", "UAG"]: break
             if genetic_code[codon] == "*":
                 break
-            protein_string += genetic_code[codon]
-#            return protein_string
-#            print ("\n \n Protein String: ", protein_string)
+            protein_string1 += genetic_code[codon]
+            return [protein_string1]
             start+=3
-        print ("\n \n Protein String1: ", protein_string)
+#        print ("\n \n Protein String1: ", protein_string1)
 
     DNA2= DNA[1:]
     print ("\n \n RNA2 String: ", DNA2)
-    x=len(DNA2)
-    if x < 3:
-        return ''
+
+
+    if (DNA2.find('AUG') != -1):
+        pass
+#        print ("Contains given substring ") 
+    else: 
+        return []
+#        print ("Doesn't contains given substring") 
+
     start = DNA2.find('AUG')
-    protein_string = ""
+    protein_string2 = ""
 
     if start!= -1:
         while start+2 < len(DNA2):
             codon = DNA2[start:start+3]
-#            if codon == ["UAA", "UGA", "UAG"]: break
             if genetic_code[codon] == "*":
                 break
-            protein_string += genetic_code[codon]
-#            return protein_string
-#            print ("\n \n Protein String: ", protein_string)
+            protein_string2 += genetic_code[codon]
+            return [protein_string2]
             start+=3
-        print ("\n \n Protein String2: ", protein_string)
-
+#        print ("\n \n Protein String2: ", protein_string2)
 
     DNA3= DNA[2:]
     print ("\n \n RNA3 String: ", DNA3)
-    x=len(DNA3)
-    if x < 3:
-        return ''
+
+    if (DNA3.find('AUG') != -1):
+        pass
+#        print ("Contains given substring ") 
+    else: 
+        return []
+#        print ("Doesn't contains given substring") 
+
     start = DNA3.find('AUG')
-    protein_string = ""
+    protein_string3 = ""
 
     if start!= -1:
         while start+2 < len(DNA3):
             codon = DNA3[start:start+3]
-#            if codon == ["UAA", "UGA", "UAG"]: break
             if genetic_code[codon] == "*":
                 break
-            protein_string += genetic_code[codon]
-#            return protein_string
-#            print ("\n \n Protein String: ", protein_string)
+            protein_string3 += genetic_code[codon]
+            return [protein_string3]
             start+=3
-        print ("\n \n Protein String3: ", protein_string)
-
+#        print ("\n \n Protein String3: ", protein_string3)
 
 #3 DONE Passed All
 
