@@ -3,6 +3,7 @@
 import sys
 import re
 
+#1 Passed 6/6 test :) 
 def vet_nucleotide_sequence(sequence):
     """
     Return None if `sequence` is a valid RNA or DNA sequence, else raise exception. 
@@ -57,8 +58,9 @@ def vet_nucleotide_sequence(sequence):
     # any valid RNA and DNA sequence strings, respectively (and only strings of
     # RNA and DNA bases).
     # Read the docstring above for additional clues.
-    rna_pattern_str = r'AUCG'
-    dna_pattern_str = r'ATCG'
+    sequence = sequence.upper()
+    rna_pattern_str = r'^[AUGC]+$|^$'
+    dna_pattern_str = r'^[ATGC]+$|^$'
     ##########################################################################
 
     rna_pattern = re.compile(rna_pattern_str)
@@ -71,7 +73,7 @@ def vet_nucleotide_sequence(sequence):
     else:
         raise Exception("Invalid sequence: {0!r}".format(sequence))
 
-
+#test2 Pass 5/5 :) 
 
 def vet_codon(codon):
     """
@@ -119,8 +121,10 @@ def vet_codon(codon):
     # Change `codon_pattern_str` so that it will match any valid codons, and
     # only valid codons.
     # Read the docstring above for additional clues.
-    codon_pattern_str = r'AUG'
-    ##########################################################################
+    codon =codon.upper()
+    codon_pattern_str = r'^([AUGC]{3})$'
+    
+	##########################################################################
 
     codon_pattern = re.compile(codon_pattern_str)
 
@@ -129,6 +133,7 @@ def vet_codon(codon):
     else:
         raise Exception("Invalid codon: {0!r}".format(codon))
 
+#test3 11/13 passed :) 
 
 def find_first_orf(sequence,
         start_codons = ['AUG'],
@@ -207,7 +212,7 @@ def find_first_orf(sequence,
     # exactly. Change `orf_pattern_str` so that it will match any open reading
     # frame.
     # Read the docstring above for additional clues.
-    orf_pattern_str = r'AUGGUAUAA'
+    orf_pattern_str = r'AUG(...)*U(AA|AG|GA)'
     ##########################################################################
 
     # Create the regular expression object
